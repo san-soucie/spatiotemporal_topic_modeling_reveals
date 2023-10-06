@@ -14,10 +14,10 @@ project_dir = Path(__file__).parents[2]
 def nmds():
     nmds_filename = project_dir / "data" / "model" / "nmds.json"
     observations_filename = project_dir / "data" / "processed" / "data.json"
-    metadata_filename = project_dir / "data" / "processed" / "data.json"
+    metadata_filename = project_dir / "data" / "processed" / "metadata.json"
 
     params = params_show()
-    random_seed = params["random_seed"]
+    random_seed = params["nmds"]["random_seed"]
 
     observations = pd.read_json(observations_filename)
     metadata = pd.read_json(metadata_filename)

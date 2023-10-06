@@ -26,7 +26,7 @@ def rost():
     )
 
     rost_input_observations_filename = project_dir / "processed" / "observations.csv"
-    metadata_filename = project_dir / "data" / "processed" / "data.json"
+    metadata_filename = project_dir / "data" / "processed" / "meta_data.json"
 
     has_rostpy = False
     try:
@@ -66,7 +66,7 @@ def rost():
                 obs.extend([taxon] * count)
             rost.add_observation([t], obs)
 
-        for epoch in range(params.epochs):  # epoch
+        for epoch in range(params["rost"]["epochs"]):  # epoch
             rostpy.parallel_refine(rost, 8)
 
         topics = {f"topic_{i+1}": [0 for _ in times] for i in range(rost.K)}

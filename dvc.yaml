@@ -1,0 +1,41 @@
+stages:
+  process_data:
+    cmd: python src/data_processing/process_data.py
+    deps:
+    - data/raw
+    - src/data_processing/process_data.py
+    outs:
+    - data/processed/classcount.json
+    - data/processed/data.json
+    - data/processed/meta_data.json
+    - data/processed/observations.json
+  nmds:
+    cmd: python src/data_processing/nmds.py
+    deps:
+    - data/processed/data.json
+    - data/processed/meta_data.json
+    - src/data_processing/nmds.py
+    outs:
+    - data/model/nmds.json
+    params:
+    - nmds.random_seed
+  rost:
+    cmd: python src/data_processing/rost.py
+    deps:
+    - data/processed/observations.json
+    - data/processed/meta_data.json
+    - src/data_processing/rost.py
+    - data/preserved_rost_output/rost_topic_prob.json
+    - data/preserved_rost_output/rost_wt_matrix.json
+    - data/preserved_rost_output/rost_word_prob.json
+    outs:
+    - data/model/rost_topic_prob.json
+    - data/model/rost_wt_matrix.json
+    - data/model/rost_word_prob.json
+    params:
+    - rost.epochs
+    - rost.k
+    - rost.alpha
+    - rost.beta
+    - rost.overwrite
+    - rost.copy_preserved_data
