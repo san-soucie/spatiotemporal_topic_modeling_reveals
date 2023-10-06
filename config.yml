@@ -1,0 +1,16 @@
+data:
+  dir_type: relative
+  path: data
+  raw_subdir_name: raw
+  processed_subdir_name: processed
+  model_subdir_name: model
+output:
+  dirtype: relative
+  path: output
+rost:
+  epochs: 1000
+  alpha: 100.0
+  beta: 100.0
+  k: 4
+random_seed: 7777
+

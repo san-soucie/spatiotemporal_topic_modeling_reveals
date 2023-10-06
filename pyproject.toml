@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spatiotemporal_topic_modeling_reveals"
+version = '1.0.0'
+authors = [
+    {name = "John San Soucie", email = "jsansoucie@whoi.edu"},
+]
+description = "Figures for San Soucie et al. 2023"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "pandas",
+    "rostpy",
+    "pyyaml",
+    "geopy",
+    "scipy",
+    "numpy",
+    "scikit-learn",
+    "matplotlib",
+    "dvc"
+]
+
