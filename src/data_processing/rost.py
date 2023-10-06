@@ -1,40 +1,63 @@
-import rostpy
-
-import yaml
+import shutil
 
 import pandas as pd
-from ..utils import ConfigDict, FileList, ROSTConfig
 from pathlib import Path
-from click import pass_context, Context
-import click
-from ..__main__ import cli, data_options
+from dvc.api import params_show
+
+project_dir = Path(__file__).parents[2]
 
 
-@cli.command()
-@data_options
-@click.option('--force-overwrite', is_flag=True, default=False) # cannot be specified except from command line
-@pass_context
-def rost(ctx: Context, force_overwrite: bool = False, **kwargs) -> FileList:
-    config: ConfigDict = ctx.obj[ConfigDict.name]
-    params: ROSTConfig = config.__getattribute__(ROSTConfig.name)
-    filelist = ctx.obj[FileList.name]
+def rost():
+    params = params_show()
+    overwrite = params["rost"]["overwrite"]
+    copy_preserved_data = params["rost"]["copy_preserved_data"]
+    topic_prob_filename = project_dir / "data" / "model" / "rost_topic_prob.json"
+    wt_matrix_filename = project_dir / "data" / "model" / "rost_wt_matrix.json"
+    word_prob_filename = project_dir / "data" / "model" / "rost_word_prob.json"
 
-    filelist.topic_prob = config.model_data_path / 'rost_topic_prob.json'
-    filelist.wt_matrix = config.model_data_path / 'rost_wt_matrix.json'
-    filelist.word_prob = config.model_data_path / 'rost_word_prob.json'
+    preserved_topic_prob_filename = (
+        project_dir / "data" / "preserved_rost_output" / "rost_topic_prob.json"
+    )
+    preserved_wt_matrix_filename = (
+        project_dir / "data" / "preserved_rost_output" / "rost_wt_matrix.json"
+    )
+    preserved_word_prob_filename = (
+        project_dir / "data" / "preserved_rost_output" / "rost_word_prob.json"
+    )
 
-    ctx.obj[FileList.name] = filelist
+    rost_input_observations_filename = project_dir / "processed" / "observations.csv"
+    metadata_filename = project_dir / "data" / "processed" / "data.json"
 
-    if not kwargs['dry_run'] and force_overwrite:
-        dataset = pd.read_csv(filelist.rost_input_observations, header=0).fillna(0).astype(int)
+    has_rostpy = False
+    try:
+        import rostpy
+
+        has_rostpy = True
+    except ImportError:
+        pass
+
+    if not overwrite:
+        topic_prob_filename.touch()
+        word_prob_filename.touch()
+        wt_matrix_filename.touch()
+    elif copy_preserved_data:
+        shutil.copy2(preserved_topic_prob_filename, topic_prob_filename)
+        shutil.copy2(preserved_word_prob_filename, word_prob_filename)
+        shutil.copy2(preserved_wt_matrix_filename, wt_matrix_filename)
+    elif has_rostpy:
+        dataset = (
+            pd.read_csv(rost_input_observations_filename, header=0)
+            .fillna(0)
+            .astype(int)
+        )
         taxa = dataset.columns
-        meta_data = pd.read_json(filelist.meta_data)
+        meta_data = pd.read_json(metadata_filename)
         times = meta_data.sample_time
         rost = rostpy.ROST_t(
             V=len(taxa),
-            K=params.k,
-            alpha=params.alpha,
-            beta=params.beta,
+            K=int(params["rost"]["k"]),
+            alpha=float(params["rost"]["alpha"]),
+            beta=float(params["rost"]["beta"]),
             gamma=1e-5,
         )
         for t, (_, data) in enumerate(dataset.iterrows()):
@@ -74,8 +97,6 @@ def rost(ctx: Context, force_overwrite: bool = False, **kwargs) -> FileList:
             id_vars=["sample_time"], var_name="category", value_name="prob"
         )
 
-        topic_prob_df_melted.to_json(filelist.topic_prob, orient="records")
-        wt_matrix_df_norm_melted.to_json(filelist.wt_matrix, orient="records")
-        word_prob_df_melted.to_json(filelist.word_prob, orient="records")
-
-    return filelist
+        topic_prob_df_melted.to_json(topic_prob_filename, orient="records")
+        wt_matrix_df_norm_melted.to_json(wt_matrix_filename, orient="records")
+        word_prob_df_melted.to_json(word_prob_filename, orient="records")

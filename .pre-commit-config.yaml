@@ -1,0 +1,55 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: trailing-whitespace
+    stages:
+    - commit
+  - id: end-of-file-fixer
+    stages:
+    - commit
+  - id: check-yaml
+    stages:
+    - commit
+  - id: check-added-large-files
+    stages:
+    - commit
+  # Using this mirror lets us use mypyc-compiled black, which is about 2x faster
+- repo: https://github.com/psf/black-pre-commit-mirror
+  rev: 23.9.1
+  hooks:
+    - id: black
+    # It is recommended to specify the latest version of Python
+    # supported by your project here, or alternatively use
+    # pre-commit's default_language_version, see
+    # https://pre-commit.com/#top_level-default_language_version
+      language_version: python3.11
+      stages:
+      - commit
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.0.292
+  hooks:
+    - id: ruff
+      args: [--fix, --exit-non-zero-on-fix]
+      stages:
+      - commit
+- repo: https://github.com/iterative/dvc
+  rev: 3.24.0
+  hooks:
+    - id: dvc-pre-commit
+      language_version: python3.11
+      stages:
+        - commit
+    - id: dvc-pre-push
+    # use s3/gs/etc instead of all to only install specific cloud support
+      language_version: python3
+      stages:
+        - push
+    - always_run: true
+      id: dvc-post-checkout
+      language_version: python3.11
+      stages:
+        - post-checkout

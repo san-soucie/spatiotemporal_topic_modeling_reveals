@@ -1,34 +1,50 @@
 import pandas as pd
 import numpy as np
-from ..utils import DATA_DIR, get_config
-
+from pathlib import Path
 from scipy.spatial.distance import braycurtis
 from sklearn.metrics import pairwise_distances
 from sklearn.manifold import MDS
 from sklearn.decomposition import PCA
 
+from dvc.api import params_show
+
+project_dir = Path(__file__).parents[2]
+
 
 def nmds():
-    config = get_config()
-    model_dir = DATA_DIR / config["data"]["model_subdir_name"]
-    nmds_filename = model_dir / 'nmds.json'
-    wt_matrix_filename = model_dir / 'rost_wt_matrix.json'
-    word_prob_filename = model_dir / 'rost_word_prob.json'
+    nmds_filename = project_dir / "data" / "model" / "nmds.json"
+    observations_filename = project_dir / "data" / "processed" / "data.json"
+    metadata_filename = project_dir / "data" / "processed" / "data.json"
 
-    random_seed = config["random_seed"]
+    params = params_show()
+    random_seed = params["random_seed"]
 
-    observations = pd.read_json(filelist.data)
-    metadata = pd.read_json(filelist.meta_data)
+    observations = pd.read_json(observations_filename)
+    metadata = pd.read_json(metadata_filename)
 
     obs_dissimilarity = pairwise_distances(observations.to_numpy(), metric=braycurtis)
 
-    nmds = MDS(n_init=1, n_components=2, metric=False, dissimilarity='precomputed', random_state=RANDOM_SEED)
-    nmds.fit(obs_dissimilarity, init=PCA(n_components=2).fit_transform(obs_dissimilarity))
+    nmds = MDS(
+        n_init=1,
+        n_components=2,
+        metric=False,
+        dissimilarity="precomputed",
+        random_state=random_seed,
+    )
+    nmds.fit(
+        obs_dissimilarity, init=PCA(n_components=2).fit_transform(obs_dissimilarity)
+    )
     x = nmds.embedding_[..., 0]
     y = nmds.embedding_[..., 1]
     t = metadata.day_of_month.to_numpy()
-    stress = np.sqrt(nmds.stress_ / (0.5 * np.sum(obs_dissimilarity ** 2)))
+    stress = np.sqrt(nmds.stress_ / (0.5 * np.sum(obs_dissimilarity**2)))
 
-    df = pd.DataFrame({'nmds_component_1': x, 'nmds_component_2': y, 'day_of_month': t, 'stress': [stress] * len(x)})
-    df.to_json(filelist.nmds, orient='records')
-    return filelist
+    df = pd.DataFrame(
+        {
+            "nmds_component_1": x,
+            "nmds_component_2": y,
+            "day_of_month": t,
+            "stress": [stress] * len(x),
+        }
+    )
+    df.to_json(nmds_filename, orient="records")

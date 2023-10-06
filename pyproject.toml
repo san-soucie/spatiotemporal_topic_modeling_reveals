@@ -17,7 +17,6 @@ classifiers = [
 ]
 dependencies = [
     "pandas",
-    "rostpy",
     "pyyaml",
     "geopy",
     "scipy",
@@ -27,3 +26,6 @@ dependencies = [
     "dvc"
 ]
 
+[project.optional-dependencies]
+dev = ["pre-commit"]
+rost = ["rostpy"]
