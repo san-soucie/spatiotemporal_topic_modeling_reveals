@@ -1,0 +1,131 @@
+schema: '2.0'
+stages:
+  process_data:
+    cmd: python src/data_processing/process_data.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 32427163f0b97b354a5352ca80a7edca.dir
+      size: 17484463
+      nfiles: 15
+    - path: src/data_processing/process_data.py
+      hash: md5
+      md5: f665dc2999b11abbb6282bf68bc94976
+      size: 4104
+    outs:
+    - path: data/processed/classcount.json
+      hash: md5
+      md5: fcfef9ec89b66a4b3dbcc2caa2ab720f
+      size: 814678
+    - path: data/processed/data.json
+      hash: md5
+      md5: d45f9318f2f103fad70301b639fd1c24
+      size: 580824
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: data/processed/observations.csv
+      hash: md5
+      md5: cf92cbf4c3094ae2ba6019dcd34d125c
+      size: 74309
+  figure1:
+    cmd: python src/outputs/figure1.py
+    deps:
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: data/raw/altitude.csv
+      hash: md5
+      md5: a55aa90c495bec3f40535a4bae1b0012
+      size: 68666
+    - path: data/raw/ec.csv
+      hash: md5
+      md5: 93897844f9f3afc75d399c095fe0a4d5
+      size: 3013
+    - path: data/raw/sst.csv
+      hash: md5
+      md5: efab69fe41e0df5ea25882ba1bd737aa
+      size: 15075961
+    params:
+      params.yaml:
+        figures.dpi: 600
+        figures.page_height: 9.05512
+        figures.page_width: 7.48031
+    outs:
+    - path: output/figure1.eps
+      hash: md5
+      md5: 13fb42749558f74142b15f6035fdb8b4
+      size: 16520634
+  nmds:
+    cmd: python src/data_processing/nmds.py
+    deps:
+    - path: data/processed/data.json
+      hash: md5
+      md5: d45f9318f2f103fad70301b639fd1c24
+      size: 580824
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: src/data_processing/nmds.py
+      hash: md5
+      md5: 262bf4ba3036baf692df369f7990bf52
+      size: 1524
+    params:
+      params.yaml:
+        nmds.random_seed: 7777
+    outs:
+    - path: data/model/nmds.json
+      hash: md5
+      md5: c265f664bab518d74613337c42f63e05
+      size: 90629
+  rost:
+    cmd: python src/data_processing/rost.py
+    deps:
+    - path: data/preserved_rost_output/rost_topic_prob.json
+      hash: md5
+      md5: 9f5f3c707dc4d171a5de8561f71d2a92
+      size: 243704
+    - path: data/preserved_rost_output/rost_word_prob.json
+      hash: md5
+      md5: 994c7e54c443979030c4556dc926f5c7
+      size: 2642366
+    - path: data/preserved_rost_output/rost_wt_matrix.json
+      hash: md5
+      md5: 95122e110686a1247621cfc75f1aa40f
+      size: 9762
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: data/processed/observations.csv
+      hash: md5
+      md5: cf92cbf4c3094ae2ba6019dcd34d125c
+      size: 74309
+    - path: src/data_processing/rost.py
+      hash: md5
+      md5: 4cb0a0d4c0e9f88650b6a09a67700cda
+      size: 3928
+    params:
+      params.yaml:
+        rost.alpha: 100.0
+        rost.beta: 100.0
+        rost.copy_preserved_data: false
+        rost.epochs: 1000
+        rost.k: 4
+        rost.overwrite: true
+    outs:
+    - path: data/model/rost_topic_prob.json
+      hash: md5
+      md5: 662a18b6c5ee0a8e7374fec9db37b5c5
+      size: 219042
+    - path: data/model/rost_word_prob.json
+      hash: md5
+      md5: 1f02019ce10f6b2a790e703f6774b1ed
+      size: 2388217
+    - path: data/model/rost_wt_matrix.json
+      hash: md5
+      md5: 77cc124b9f5057b8a016f78c05117b7f
+      size: 10284

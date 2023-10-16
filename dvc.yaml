@@ -8,7 +8,7 @@ stages:
     - data/processed/classcount.json
     - data/processed/data.json
     - data/processed/meta_data.json
-    - data/processed/observations.json
+    - data/processed/observations.csv
   nmds:
     cmd: python src/data_processing/nmds.py
     deps:
@@ -22,7 +22,7 @@ stages:
   rost:
     cmd: python src/data_processing/rost.py
     deps:
-    - data/processed/observations.json
+    - data/processed/observations.csv
     - data/processed/meta_data.json
     - src/data_processing/rost.py
     - data/preserved_rost_output/rost_topic_prob.json
@@ -45,10 +45,23 @@ stages:
     - data/processed/meta_data.json
     - data/raw/altitude.csv
     - data/raw/sst.csv
-    - data/raw_ec.csv
+    - data/raw/ec.csv
+    - src/outputs/figure1.py
     outs:
-    - outputs/figure1.eps
+    - output/figure1.eps
     params:
     - figures.page_width
     - figures.page_height
     - figures.dpi
+  figure3:
+    cmd: python src/outputs/figure3.py
+    deps:
+      - data/processed/meta_data.json
+      - data/model/nmds.json
+      - src/outputs/figure3.py
+    outs:
+      - output/figure3.eps
+    params:
+      - figures.page_width
+      - figures.page_height
+      - figures.dpi

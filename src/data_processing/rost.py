@@ -7,7 +7,7 @@ from dvc.api import params_show
 project_dir = Path(__file__).parents[2]
 
 
-def rost():
+def main():
     params = params_show()
     overwrite = params["rost"]["overwrite"]
     copy_preserved_data = params["rost"]["copy_preserved_data"]
@@ -25,7 +25,9 @@ def rost():
         project_dir / "data" / "preserved_rost_output" / "rost_word_prob.json"
     )
 
-    rost_input_observations_filename = project_dir / "processed" / "observations.csv"
+    rost_input_observations_filename = (
+        project_dir / "data" / "processed" / "observations.csv"
+    )
     metadata_filename = project_dir / "data" / "processed" / "meta_data.json"
 
     has_rostpy = False
@@ -100,3 +102,7 @@ def rost():
         topic_prob_df_melted.to_json(topic_prob_filename, orient="records")
         wt_matrix_df_norm_melted.to_json(wt_matrix_filename, orient="records")
         word_prob_df_melted.to_json(word_prob_filename, orient="records")
+
+
+if __name__ == "__main__":
+    main()

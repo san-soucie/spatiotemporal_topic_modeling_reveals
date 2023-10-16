@@ -3,23 +3,7 @@ import numpy as np
 from matplotlib.patches import Rectangle
 import matplotlib.pyplot as plt
 import dvc.api
-from pathlib import Path
-
-
-project_dir = Path(__file__).parents[2]
-
-
-def mark_text(ax, text):
-    dx = 0.033
-    dy = 0.9
-    minx, maxx = ax.get_xlim()
-    miny, maxy = ax.get_ylim()
-    ax.text(
-        minx + dx * (maxx - minx),
-        miny + dy * (maxy - miny),
-        text,
-        backgroundcolor="white",
-    )
+from .common import project_dir, mark_text
 
 
 def main():
@@ -183,11 +167,10 @@ def main():
 
         kd_ax.annotate(r, (cx, cy), color="k", weight="bold", ha="center", va="center")
 
-    mark_text(ct_ax, "a)")
-    mark_text(sh_ax, "b)")
+    mark_text(ct_ax, "a)", 0.033, 0.9)
+    mark_text(sh_ax, "b)", 0.033, 0.9)
     kd_ax.text(0.5, 2.2, "c)", backgroundcolor="white")
     fig.tight_layout()
-    plt.show()
 
     fig.savefig(output_filename, dpi=dpi, bbox_inches="tight", transparent=True)
 

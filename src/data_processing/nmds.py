@@ -11,10 +11,10 @@ from dvc.api import params_show
 project_dir = Path(__file__).parents[2]
 
 
-def nmds():
+def main():
     nmds_filename = project_dir / "data" / "model" / "nmds.json"
     observations_filename = project_dir / "data" / "processed" / "data.json"
-    metadata_filename = project_dir / "data" / "processed" / "metadata.json"
+    metadata_filename = project_dir / "data" / "processed" / "meta_data.json"
 
     params = params_show()
     random_seed = params["nmds"]["random_seed"]
@@ -48,3 +48,7 @@ def nmds():
         }
     )
     df.to_json(nmds_filename, orient="records")
+
+
+if __name__ == "__main__":
+    main()
