@@ -4,7 +4,7 @@ from pathlib import Path
 project_dir = Path(__file__).parents[2]
 
 
-def process_data():
+def main():
     raw_data_path = project_dir / "data" / "raw"
     processed_data_path = project_dir / "data" / "processed"
 
@@ -99,3 +99,7 @@ def process_data():
     observations = good_data.reset_index()
     observations = observations.drop(["sample_time"], axis=1)
     observations.to_csv(rost_input_observations_filename, index=False)
+
+
+if __name__ == "__main__":
+    main()
