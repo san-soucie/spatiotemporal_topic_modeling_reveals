@@ -3,7 +3,11 @@ rost:
   alpha: 100.0
   beta: 100.0
   k: 4
-  overwrite: false
+  overwrite: true
   copy_preserved_data: false
 nmds:
   random_seed: 7777
+figures:
+  page_width: 7.48031
+  page_height: 9.05512
+  dpi: 600

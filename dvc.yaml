@@ -39,3 +39,16 @@ stages:
     - rost.beta
     - rost.overwrite
     - rost.copy_preserved_data
+  figure1:
+    cmd: python src/outputs/figure1.py
+    deps:
+    - data/processed/meta_data.json
+    - data/raw/altitude.csv
+    - data/raw/sst.csv
+    - data/raw_ec.csv
+    outs:
+    - outputs/figure1.eps
+    params:
+    - figures.page_width
+    - figures.page_height
+    - figures.dpi
