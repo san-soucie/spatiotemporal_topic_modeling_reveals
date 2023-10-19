@@ -50,8 +50,8 @@ stages:
       size: 15075961
     - path: src/outputs/common.py
       hash: md5
-      md5: 7815fcf84efe242d765948b3284d5ed2
-      size: 599
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
     - path: src/outputs/figure1.py
       hash: md5
       md5: 94eba0b82f6a37ee3ec16efa35c71bf5
@@ -64,8 +64,8 @@ stages:
     outs:
     - path: output/figure1.eps
       hash: md5
-      md5: 0492e4ba56a7a0dc2e5dd5f27b1bbd23
-      size: 16520634
+      md5: 81f773a7d344b8ba96aaa2ed23a5840b
+      size: 16688643
   nmds:
     cmd: python src/data_processing/nmds.py
     deps:
@@ -150,8 +150,8 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: 7815fcf84efe242d765948b3284d5ed2
-      size: 599
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
     - path: src/outputs/figure3.py
       hash: md5
       md5: 7563840c7e3cdf4a67c77e0bb7f086b2
@@ -164,8 +164,8 @@ stages:
     outs:
     - path: output/figure3.eps
       hash: md5
-      md5: 28a1aa7fd3e98c75e03653c6bde8164f
-      size: 80778
+      md5: 9937d2d66440dc202271c8657c47d110
+      size: 84653
   figure4:
     cmd: python src/outputs/figure4.py
     deps:
@@ -179,8 +179,8 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: 7815fcf84efe242d765948b3284d5ed2
-      size: 599
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
     - path: src/outputs/figure4.py
       hash: md5
       md5: 0c2bc18fe48dfa9f1ec79811c7062105
@@ -193,8 +193,8 @@ stages:
     outs:
     - path: output/figure4.eps
       hash: md5
-      md5: 313d0d3b5ffb8d47a5fa20ef873c97b2
-      size: 167039
+      md5: 976c218ce5f65b2297e0623bd4f833ec
+      size: 160684
   figure5:
     cmd: python src/outputs/figure5.py
     deps:
@@ -208,12 +208,12 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: 7815fcf84efe242d765948b3284d5ed2
-      size: 599
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
     - path: src/outputs/figure5.py
       hash: md5
-      md5: 75e109811831a926680dad299397defa
-      size: 3198
+      md5: 96799fa473beda4f30bcc470da5ab978
+      size: 3200
     params:
       params.yaml:
         figures.dpi: 600
@@ -222,8 +222,8 @@ stages:
     outs:
     - path: output/figure5.eps
       hash: md5
-      md5: 6288902a0115d04bc8213e938075ae96
-      size: 56449
+      md5: 6a4982c011864ec46ed15932c67427a5
+      size: 56265
   figure6:
     cmd: python src/outputs/figure6.py
     deps:
@@ -237,12 +237,12 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: 7815fcf84efe242d765948b3284d5ed2
-      size: 599
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
     - path: src/outputs/figure6.py
       hash: md5
-      md5: f9947c4537f510ee844454efc315e517
-      size: 4945
+      md5: e3bf0c63604cef06235a3d3d16fe7498
+      size: 5196
     params:
       params.yaml:
         figures.dpi: 600
@@ -251,8 +251,8 @@ stages:
     outs:
     - path: output/figure6.eps
       hash: md5
-      md5: 844ba20aba9ac944b5f4befbe3a6e7b4
-      size: 3190482
+      md5: 596715c0e6ad2e1e64bd89cca3912540
+      size: 3189949
   figure7:
     cmd: python src/outputs/figure7.py
     deps:
@@ -270,8 +270,8 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: 7815fcf84efe242d765948b3284d5ed2
-      size: 599
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
     - path: src/outputs/figure7.py
       hash: md5
       md5: de00c22a7dad67ccb6e9704e55d7465c
@@ -284,8 +284,8 @@ stages:
     outs:
     - path: output/figure7.eps
       hash: md5
-      md5: e7babb44171226dc497271dc17f8fb41
-      size: 523844
+      md5: 1c094d83c93e7daabae21910a8a62fd1
+      size: 1836660
   figure8:
     cmd: python src/outputs/figure8.py
     deps:
@@ -311,12 +311,12 @@ stages:
       size: 207249
     - path: src/outputs/common.py
       hash: md5
-      md5: 4cb5a7b56807cb7e761edde64cb0a655
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
       size: 652
     - path: src/outputs/figure8.py
       hash: md5
-      md5: e37f90338acc082679242c37bbb2e345
-      size: 6323
+      md5: c57757284de7b659ff433e09d68930d3
+      size: 6485
     params:
       params.yaml:
         figures.dpi: 600
@@ -325,5 +325,29 @@ stages:
     outs:
     - path: output/figure8.eps
       hash: md5
-      md5: 2168bea4d27e865acb956c73337c90f4
+      md5: be5f3065fbbcef2074ae5a2f4ec405a3
       size: 2435208
+  table1:
+    cmd: python src/outputs/table1.py
+    deps:
+    - path: data/model/rost_topic_prob.json
+      hash: md5
+      md5: 1e098d7266e71ffbee2498939c7af42d
+      size: 218851
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: src/outputs/common.py
+      hash: md5
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
+    - path: src/outputs/table1.py
+      hash: md5
+      md5: 4208859ac32c1c4bc62c4f6a624fd9ea
+      size: 2750
+    outs:
+    - path: output/table1.tex
+      hash: md5
+      md5: 1a9b8685930ed22eb2fd3919dfc529f9
+      size: 1179

@@ -23,7 +23,8 @@ dependencies = [
     "numpy",
     "scikit-learn",
     "matplotlib",
-    "dvc[ssh]"
+    "dvc[ssh]",
+    "jinja2",
 ]
 
 [project.optional-dependencies]

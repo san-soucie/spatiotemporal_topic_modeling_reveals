@@ -136,3 +136,12 @@ stages:
       - figures.page_width
       - figures.page_height
       - figures.dpi
+  table1:
+    cmd: python src/outputs/table1.py
+    deps:
+      - data/processed/meta_data.json
+      - data/model/rost_topic_prob.json
+      - src/outputs/table1.py
+      - src/outputs/common.py
+    outs:
+      - output/table1.tex
