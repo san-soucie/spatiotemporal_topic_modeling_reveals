@@ -55,7 +55,7 @@ def make_stacked_barchart(ax, df):
     ax.set_yticks(list(range(1, k + 1)))
     ax.set_yticklabels(df.columns)
     bar_height = 0.9
-    for i, topic in enumerate(df.columns):
+    for i, topic in enumerate(reversed(df.columns)):
         x = 0.0
         y = k - i - 0.45
         for taxon, prob in df[topic].sort_values(ascending=False).items():

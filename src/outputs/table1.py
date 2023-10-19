@@ -58,9 +58,17 @@ def main():
     topics["cruise_period"] = list(metadata.cruise_period)
     topics["distance_class"] = list(metadata.distance_class)
     df = topics.groupby(["cruise_period", "distance_class"]).apply("mean").reset_index()
+    df.columns = [
+        "Cruise period",
+        "Location",
+        "Com. 1",
+        "Com. 2",
+        "Com. 3",
+        "Com. 4",
+    ]
     df.columns.name = ""
-    df["sort1"] = df["cruise_period"].apply(lambda c: CRUISE_PERIOD_SORT_VALUE[c])
-    df["sort2"] = df["distance_class"].apply(lambda c: DISTANCE_CLASS_SORT_VALUE[c])
+    df["sort1"] = df["Cruise period"].apply(lambda c: CRUISE_PERIOD_SORT_VALUE[c])
+    df["sort2"] = df["Location"].apply(lambda c: DISTANCE_CLASS_SORT_VALUE[c])
     df.columns = [
         "Cruise period",
         "Location",
@@ -71,7 +79,7 @@ def main():
         "sort1",
         "sort2",
     ]
-    df = df.sort_values(by=["sort1", "sort2"])
+    df = df.sort_values(by=["sort1", "sort2"], axis=0)
     df = df.drop(["sort1", "sort2"], axis=1)
     cruise_period_without_duplicates = df["Cruise period"].copy(deep=True)
     cruise_period_without_duplicates[pd.Series.duplicated(df["Cruise period"])] = ""

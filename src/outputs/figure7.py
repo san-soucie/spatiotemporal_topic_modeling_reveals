@@ -210,6 +210,7 @@ def main():
     ax = plt.subplot(2, 7, (12, 13))
 
     x = obs_mixing.y
+    print(topics_e2idx)
     y = topics_e2idx["topic_3"]
     c = obs_mixing.dkl
 
@@ -226,7 +227,7 @@ def main():
     ax.text(0.1, 0.7, f"r^2={r2:3.5f}")
     ax.grid()
     ax.set_xlabel("Filament fraction")
-    ax.set_ylabel("Community 4 proportion")
+    ax.set_ylabel("Community 3 proportion")
     ax.set_xlim([0, 1])
     ax.set_ylim([0, 1])
     # set_font_size(ax, size=FONTSIZE*1.6)
