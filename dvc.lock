@@ -274,8 +274,8 @@ stages:
       size: 599
     - path: src/outputs/figure7.py
       hash: md5
-      md5: f3c703566ccb55ddd02a3ec14b37585e
-      size: 7318
+      md5: de00c22a7dad67ccb6e9704e55d7465c
+      size: 7552
     params:
       params.yaml:
         figures.dpi: 600
@@ -284,5 +284,46 @@ stages:
     outs:
     - path: output/figure7.eps
       hash: md5
-      md5: 546b9478a3fcdcba3c0fe50294090045
+      md5: e7babb44171226dc497271dc17f8fb41
       size: 523844
+  figure8:
+    cmd: python src/outputs/figure8.py
+    deps:
+    - path: data/processed/data.json
+      hash: md5
+      md5: d45f9318f2f103fad70301b639fd1c24
+      size: 580824
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: data/raw/1dmodel.csv
+      hash: md5
+      md5: bac311593620f074e81aaac14bec76b8
+      size: 105592
+    - path: data/raw/summary_biovol_allHDF_min20_2021.classcount.csv
+      hash: md5
+      md5: 2d84f5da84fc96199a348c9817c7cb44
+      size: 369232
+    - path: data/raw/summary_biovol_allHDF_min20_2021.meta_data.csv
+      hash: md5
+      md5: f7fdd4b89346d3af6e148d8ffd0098ac
+      size: 207249
+    - path: src/outputs/common.py
+      hash: md5
+      md5: 4cb5a7b56807cb7e761edde64cb0a655
+      size: 652
+    - path: src/outputs/figure8.py
+      hash: md5
+      md5: e37f90338acc082679242c37bbb2e345
+      size: 6323
+    params:
+      params.yaml:
+        figures.dpi: 600
+        figures.page_height: 9.05512
+        figures.page_width: 7.48031
+    outs:
+    - path: output/figure8.eps
+      hash: md5
+      md5: 2168bea4d27e865acb956c73337c90f4
+      size: 2435208

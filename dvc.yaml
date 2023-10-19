@@ -93,6 +93,19 @@ stages:
       - figures.page_width
       - figures.page_height
       - figures.dpi
+  figure6:
+    cmd: python src/outputs/figure6.py
+    deps:
+      - data/processed/meta_data.json
+      - data/model/rost_topic_prob.json
+      - src/outputs/figure6.py
+      - src/outputs/common.py
+    outs:
+      - output/figure6.eps
+    params:
+      - figures.page_width
+      - figures.page_height
+      - figures.dpi
   figure7:
     cmd: python src/outputs/figure7.py
     deps:
@@ -103,6 +116,22 @@ stages:
       - src/outputs/common.py
     outs:
       - output/figure7.eps
+    params:
+      - figures.page_width
+      - figures.page_height
+      - figures.dpi
+  figure8:
+    cmd: python src/outputs/figure8.py
+    deps:
+      - data/processed/meta_data.json
+      - data/processed/data.json
+      - data/raw/summary_biovol_allHDF_min20_2021.classcount.csv
+      - data/raw/summary_biovol_allHDF_min20_2021.meta_data.csv
+      - data/raw/1dmodel.csv
+      - src/outputs/figure8.py
+      - src/outputs/common.py
+    outs:
+      - output/figure8.eps
     params:
       - figures.page_width
       - figures.page_height

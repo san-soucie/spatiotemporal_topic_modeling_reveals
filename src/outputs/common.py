@@ -2,6 +2,8 @@ from pathlib import Path
 from matplotlib.pyplot import cm
 import matplotlib
 
+matplotlib.pyplot.rcParams.update({"font.size": 8})
+
 project_dir = Path(__file__).parents[2]
 
 epoch1color = "#a8bbe3"
