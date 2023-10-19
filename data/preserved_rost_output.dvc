@@ -1,6 +1,6 @@
 outs:
-- md5: 73f7f0c0bf719e70d5013c09572dc989.dir
-  size: 2895832
+- md5: 9f302261ee031854fb9ccc25389b9d81.dir
+  size: 2616751
   nfiles: 4
   hash: md5
   path: preserved_rost_output

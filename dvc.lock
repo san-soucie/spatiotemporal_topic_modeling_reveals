@@ -50,12 +50,12 @@ stages:
       size: 15075961
     - path: src/outputs/common.py
       hash: md5
-      md5: fea28e072a33f8f3c56f294656f0f29a
-      size: 482
+      md5: 7815fcf84efe242d765948b3284d5ed2
+      size: 599
     - path: src/outputs/figure1.py
       hash: md5
-      md5: 06a7ac0d6b3ec603e55eef8353fe5e3d
-      size: 5490
+      md5: 94eba0b82f6a37ee3ec16efa35c71bf5
+      size: 5491
     params:
       params.yaml:
         figures.dpi: 600
@@ -64,7 +64,7 @@ stages:
     outs:
     - path: output/figure1.eps
       hash: md5
-      md5: b203b7291ce4467b86283aac1ba07f89
+      md5: 0492e4ba56a7a0dc2e5dd5f27b1bbd23
       size: 16520634
   nmds:
     cmd: python src/data_processing/nmds.py
@@ -94,16 +94,16 @@ stages:
     deps:
     - path: data/preserved_rost_output/rost_topic_prob.json
       hash: md5
-      md5: 9f5f3c707dc4d171a5de8561f71d2a92
-      size: 243704
+      md5: 1e098d7266e71ffbee2498939c7af42d
+      size: 218851
     - path: data/preserved_rost_output/rost_word_prob.json
       hash: md5
-      md5: 994c7e54c443979030c4556dc926f5c7
-      size: 2642366
+      md5: 680dbf1253a282b7159c8a6f17cc2fef
+      size: 2388142
     - path: data/preserved_rost_output/rost_wt_matrix.json
       hash: md5
-      md5: 95122e110686a1247621cfc75f1aa40f
-      size: 9762
+      md5: c4827e5977ab1ab0feaa0488cbee3f23
+      size: 9758
     - path: data/processed/meta_data.json
       hash: md5
       md5: b8c412ddc2be052079403cd5ccc2c41d
@@ -120,7 +120,7 @@ stages:
       params.yaml:
         rost.alpha: 0.001
         rost.beta: 0.001
-        rost.copy_preserved_data: false
+        rost.copy_preserved_data: true
         rost.epochs: 1000
         rost.k: 4
         rost.overwrite: true
@@ -150,12 +150,12 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: fea28e072a33f8f3c56f294656f0f29a
-      size: 482
+      md5: 7815fcf84efe242d765948b3284d5ed2
+      size: 599
     - path: src/outputs/figure3.py
       hash: md5
-      md5: 7728348e29f4a6ac3f9053f96a6f743b
-      size: 6538
+      md5: 7563840c7e3cdf4a67c77e0bb7f086b2
+      size: 6539
     params:
       params.yaml:
         figures.dpi: 600
@@ -164,7 +164,7 @@ stages:
     outs:
     - path: output/figure3.eps
       hash: md5
-      md5: f5b2adfe123514cb6f01b295ac43f56e
+      md5: 28a1aa7fd3e98c75e03653c6bde8164f
       size: 80778
   figure4:
     cmd: python src/outputs/figure4.py
@@ -179,12 +179,12 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: d94acd5551244b3c02ba3c3029bb8d6a
-      size: 592
+      md5: 7815fcf84efe242d765948b3284d5ed2
+      size: 599
     - path: src/outputs/figure4.py
       hash: md5
-      md5: 174cfba4bf4abc60acf55d043adc4239
-      size: 3222
+      md5: 0c2bc18fe48dfa9f1ec79811c7062105
+      size: 3421
     params:
       params.yaml:
         figures.dpi: 600
@@ -193,5 +193,5 @@ stages:
     outs:
     - path: output/figure4.eps
       hash: md5
-      md5: 29cb13408d44ca8f7f59ad8da025f0e5
+      md5: 313d0d3b5ffb8d47a5fa20ef873c97b2
       size: 167039
