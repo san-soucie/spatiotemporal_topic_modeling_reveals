@@ -3,7 +3,11 @@ import numpy as np
 from matplotlib.patches import Rectangle
 import matplotlib.pyplot as plt
 import dvc.api
-from .common import project_dir, mark_text
+
+try:
+    from .common import project_dir, mark_text
+except ImportError:
+    from common import project_dir, mark_text
 
 
 def main():

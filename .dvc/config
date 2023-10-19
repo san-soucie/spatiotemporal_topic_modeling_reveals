@@ -1,2 +1,5 @@
 [core]
     autostage = true
+    remote = vortex
+['remote "vortex"']
+    url = ssh://jsansoucie@poseidon.whoi.edu/vortexfs1/share/warplab/dvc

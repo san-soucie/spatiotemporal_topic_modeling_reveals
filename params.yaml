@@ -1,10 +1,10 @@
 rost:
   epochs: 1000
-  alpha: 100.0
-  beta: 100.0
+  alpha: 0.001
+  beta: 0.001
   k: 4
   overwrite: true
-  copy_preserved_data: false
+  copy_preserved_data: true
 nmds:
   random_seed: 7777
 figures:

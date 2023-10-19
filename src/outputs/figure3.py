@@ -3,7 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 import dvc.api
-from .common import project_dir, epoch1color, epoch2color, storm1color, mark_text
+
+try:
+    from .common import project_dir, epoch1color, epoch2color, storm1color, mark_text
+except ImportError:
+    from common import project_dir, epoch1color, epoch2color, storm1color, mark_text
 
 
 def main():
