@@ -5,8 +5,8 @@ stages:
     deps:
     - path: data/raw
       hash: md5
-      md5: 32427163f0b97b354a5352ca80a7edca.dir
-      size: 17484463
+      md5: 18597e4456f95cc52520ae8874e1b3aa.dir
+      size: 17484228
       nfiles: 15
     - path: src/data_processing/process_data.py
       hash: md5
@@ -195,3 +195,94 @@ stages:
       hash: md5
       md5: 313d0d3b5ffb8d47a5fa20ef873c97b2
       size: 167039
+  figure5:
+    cmd: python src/outputs/figure5.py
+    deps:
+    - path: data/model/rost_wt_matrix.json
+      hash: md5
+      md5: c4827e5977ab1ab0feaa0488cbee3f23
+      size: 9758
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: src/outputs/common.py
+      hash: md5
+      md5: 7815fcf84efe242d765948b3284d5ed2
+      size: 599
+    - path: src/outputs/figure5.py
+      hash: md5
+      md5: 75e109811831a926680dad299397defa
+      size: 3198
+    params:
+      params.yaml:
+        figures.dpi: 600
+        figures.page_height: 9.05512
+        figures.page_width: 7.48031
+    outs:
+    - path: output/figure5.eps
+      hash: md5
+      md5: 6288902a0115d04bc8213e938075ae96
+      size: 56449
+  figure6:
+    cmd: python src/outputs/figure6.py
+    deps:
+    - path: data/model/rost_topic_prob.json
+      hash: md5
+      md5: 1e098d7266e71ffbee2498939c7af42d
+      size: 218851
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: src/outputs/common.py
+      hash: md5
+      md5: 7815fcf84efe242d765948b3284d5ed2
+      size: 599
+    - path: src/outputs/figure6.py
+      hash: md5
+      md5: f9947c4537f510ee844454efc315e517
+      size: 4945
+    params:
+      params.yaml:
+        figures.dpi: 600
+        figures.page_height: 9.05512
+        figures.page_width: 7.48031
+    outs:
+    - path: output/figure6.eps
+      hash: md5
+      md5: 844ba20aba9ac944b5f4befbe3a6e7b4
+      size: 3190482
+  figure7:
+    cmd: python src/outputs/figure7.py
+    deps:
+    - path: data/model/rost_topic_prob.json
+      hash: md5
+      md5: 1e098d7266e71ffbee2498939c7af42d
+      size: 218851
+    - path: data/processed/data.json
+      hash: md5
+      md5: d45f9318f2f103fad70301b639fd1c24
+      size: 580824
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: src/outputs/common.py
+      hash: md5
+      md5: 7815fcf84efe242d765948b3284d5ed2
+      size: 599
+    - path: src/outputs/figure7.py
+      hash: md5
+      md5: f3c703566ccb55ddd02a3ec14b37585e
+      size: 7318
+    params:
+      params.yaml:
+        figures.dpi: 600
+        figures.page_height: 9.05512
+        figures.page_width: 7.48031
+    outs:
+    - path: output/figure7.eps
+      hash: md5
+      md5: 546b9478a3fcdcba3c0fe50294090045
+      size: 523844

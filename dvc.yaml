@@ -80,3 +80,30 @@ stages:
       - figures.page_width
       - figures.page_height
       - figures.dpi
+  figure5:
+    cmd: python src/outputs/figure5.py
+    deps:
+      - data/processed/meta_data.json
+      - data/model/rost_wt_matrix.json
+      - src/outputs/figure5.py
+      - src/outputs/common.py
+    outs:
+      - output/figure5.eps
+    params:
+      - figures.page_width
+      - figures.page_height
+      - figures.dpi
+  figure7:
+    cmd: python src/outputs/figure7.py
+    deps:
+      - data/processed/meta_data.json
+      - data/processed/data.json
+      - data/model/rost_topic_prob.json
+      - src/outputs/figure7.py
+      - src/outputs/common.py
+    outs:
+      - output/figure7.eps
+    params:
+      - figures.page_width
+      - figures.page_height
+      - figures.dpi
