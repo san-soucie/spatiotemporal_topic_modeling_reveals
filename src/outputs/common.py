@@ -23,4 +23,4 @@ def mark_text(ax, text, dx, dy):
     miny, maxy = ax.get_ylim()
     x = minx + dx * (maxx - minx)
     y = miny + dy * (maxy - miny)
-    ax.text(x, y, text, backgroundcolor="white")
+    ax.text(x, y, text, backgroundcolor="white", zorder=1000)

@@ -224,7 +224,7 @@ def main():
 
     im = ax.scatter(x, y, c=c, s=100)
     ax.plot(line_x, line_y, c="k", linewidth=3)
-    ax.text(0.1, 0.7, f"r^2={r2:3.5f}")
+    ax.text(0.1, 0.7, f"$r^2={r2:1.2f}$")
     ax.grid()
     ax.set_xlabel("Filament fraction")
     ax.set_ylabel("Community 3 proportion")

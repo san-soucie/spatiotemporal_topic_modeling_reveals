@@ -77,11 +77,11 @@ def main():
         "after_storm2",
     ]
     fancy_cruise_periods = [
-        "Longitude\nBefore storm 1",
-        "Longitude\nStorm 1",
-        "Longitude\nBetween storms",
-        "Longitude\nStorm 2",
-        "Longitude\nAfter storm 2",
+        "Longitude\nBefore storm 1\nMay 5-7",
+        "Longitude\nStorm 1\nMay 7-11",
+        "Longitude\nBetween storms\nMay 11-14",
+        "Longitude\nStorm 2\nMay 14-16",
+        "Longitude\nAfter storm 2\nMay 16-19",
     ]
 
     delta_lat = change_in_latitude(15)

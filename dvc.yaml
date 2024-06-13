@@ -120,6 +120,20 @@ stages:
       - figures.page_width
       - figures.page_height
       - figures.dpi
+  figure7_defense:
+    cmd: python src/outputs/figure7_defense.py
+    deps:
+      - data/processed/meta_data.json
+      - data/processed/data.json
+      - data/model/rost_topic_prob.json
+      - src/outputs/figure7_defense.py
+      - src/outputs/common.py
+    outs:
+      - output/figure7_defense.png
+    params:
+      - figures.page_width
+      - figures.page_height
+      - figures.dpi
   figure8:
     cmd: python src/outputs/figure8.py
     deps:

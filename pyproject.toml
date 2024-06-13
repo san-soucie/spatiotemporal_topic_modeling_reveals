@@ -25,6 +25,7 @@ dependencies = [
     "matplotlib",
     "dvc[ssh]",
     "jinja2",
+    "gsw"
 ]
 
 [project.optional-dependencies]

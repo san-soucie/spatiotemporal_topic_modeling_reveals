@@ -150,12 +150,12 @@ stages:
       size: 591268
     - path: src/outputs/common.py
       hash: md5
-      md5: 6680afd704d5d3ab3d86f686aecfdd76
-      size: 652
+      md5: f206c157120a4522b22f9b768bfa658b
+      size: 665
     - path: src/outputs/figure3.py
       hash: md5
-      md5: 7563840c7e3cdf4a67c77e0bb7f086b2
-      size: 6539
+      md5: df4588d3bab909bd0493aff3d977d4bf
+      size: 7495
     params:
       params.yaml:
         figures.dpi: 600
@@ -164,8 +164,8 @@ stages:
     outs:
     - path: output/figure3.eps
       hash: md5
-      md5: 9937d2d66440dc202271c8657c47d110
-      size: 84653
+      md5: c6ab2b01b5b31a3143720bb0d55782cb
+      size: 85428
   figure4:
     cmd: python src/outputs/figure4.py
     deps:
@@ -241,8 +241,8 @@ stages:
       size: 652
     - path: src/outputs/figure6.py
       hash: md5
-      md5: e3bf0c63604cef06235a3d3d16fe7498
-      size: 5196
+      md5: 70011061d3bb23f1132ac4d966b69fd1
+      size: 5248
     params:
       params.yaml:
         figures.dpi: 600
@@ -251,8 +251,8 @@ stages:
     outs:
     - path: output/figure6.eps
       hash: md5
-      md5: 596715c0e6ad2e1e64bd89cca3912540
-      size: 3189949
+      md5: 2de78e595f54dd4852cda124cead6c48
+      size: 3192242
   figure7:
     cmd: python src/outputs/figure7.py
     deps:
@@ -351,3 +351,36 @@ stages:
       hash: md5
       md5: 1a9b8685930ed22eb2fd3919dfc529f9
       size: 1179
+  figure7_defense:
+    cmd: python src/outputs/figure7_defense.py
+    deps:
+    - path: data/model/rost_topic_prob.json
+      hash: md5
+      md5: 1e098d7266e71ffbee2498939c7af42d
+      size: 218851
+    - path: data/processed/data.json
+      hash: md5
+      md5: d45f9318f2f103fad70301b639fd1c24
+      size: 580824
+    - path: data/processed/meta_data.json
+      hash: md5
+      md5: b8c412ddc2be052079403cd5ccc2c41d
+      size: 591268
+    - path: src/outputs/common.py
+      hash: md5
+      md5: 6680afd704d5d3ab3d86f686aecfdd76
+      size: 652
+    - path: src/outputs/figure7_defense.py
+      hash: md5
+      md5: 6a6c4df8788284c4da258c753471dc95
+      size: 5453
+    params:
+      params.yaml:
+        figures.dpi: 600
+        figures.page_height: 9.05512
+        figures.page_width: 7.48031
+    outs:
+    - path: output/figure7_defense.png
+      hash: md5
+      md5: 6551a97b9a61da80f0c8aaa8d8d3c5c6
+      size: 215846

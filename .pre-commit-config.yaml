@@ -37,7 +37,7 @@ repos:
       stages:
       - commit
 - repo: https://github.com/iterative/dvc
-  rev: 3.24.0
+  rev: 3.51.2
   hooks:
     - id: dvc-pre-commit
       language_version: python3.11
