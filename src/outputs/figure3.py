@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 import dvc.api
+import gsw
 
 try:
     from .common import project_dir, epoch1color, epoch2color, storm1color, mark_text
@@ -77,7 +78,7 @@ def main():
     ax.grid()
 
     ax.set_axisbelow(True)
-    ax.scatter(x1, y1, c=t2, vmin=5, vmax=21, edgecolors="k", s=100)
+    ax.scatter(x1, y1, c=t2, vmin=5, vmax=21, edgecolors="k", s=100, zorder=100)
     ax.scatter(
         [x1_filament_epoch1_mean],
         [y1_filament_epoch1_mean],
@@ -86,6 +87,7 @@ def main():
         s=500,
         edgecolors="k",
         linewidths=2,
+        zorder=200,
     )
     ax.scatter(
         [x1_core_epoch1_mean],
@@ -95,6 +97,7 @@ def main():
         s=500,
         edgecolors="k",
         linewidths=2,
+        zorder=300,
     )
     ax.scatter(
         [x1_core_epoch2_mean],
@@ -104,6 +107,7 @@ def main():
         s=500,
         edgecolors="k",
         linewidths=2,
+        zorder=400,
     )
 
     xa = x1_core_epoch1_mean
@@ -166,10 +170,10 @@ def main():
         else epoch2color
         for i in m1.index
     ]
+
     ax = plt.subplot(1, 2, 2)
-    ax.grid()
     ax.set_axisbelow(True)
-    ax.scatter(x1, y1, c=t2, vmin=5, vmax=21, edgecolors="k", s=100)
+    ax.scatter(x1, y1, c=t2, vmin=5, vmax=21, edgecolors="k", s=100, zorder=100)
     ax.scatter(
         [x1_filament_epoch1_mean],
         [y1_filament_epoch1_mean],
@@ -178,6 +182,7 @@ def main():
         s=500,
         edgecolors="k",
         linewidths=2,
+        zorder=200,
     )
     ax.scatter(
         [x1_core_epoch1_mean],
@@ -187,6 +192,7 @@ def main():
         s=500,
         edgecolors="k",
         linewidths=2,
+        zorder=300,
     )
     ax.scatter(
         [x1_core_epoch2_mean],
@@ -196,6 +202,7 @@ def main():
         s=500,
         edgecolors="k",
         linewidths=2,
+        zorder=400,
     )
     xa = x1_core_epoch1_mean
     ya = y1_core_epoch1_mean
@@ -217,14 +224,45 @@ def main():
         fill=True,
         facecolor="grey",
         edgecolor="k",
+        zorder=500,
     )
     ax.set_xlabel("Sea Surface Salinity")
     ax.set_ylabel("Sea Surface Temp. ($\circ$C)")
+    s0, s1 = ax.get_xlim()
+    t0, t1 = ax.get_ylim()
+
+    # https://github.com/larsonjl/earth_data_tools/blob/master/TS%20%20Plot%20Example/TS%20%20Plot%20Example.md
+
+    # Calculate how many gridcells we need in the x and y dimensions
+
+    # Create temp and salt vectors of appropiate dimensions
+    n = 10
+    ti = np.linspace(t0, t1, n)
+    si = np.linspace(s0, s1, n)
+
+    dens = np.zeros((n, n))
+
+    # Loop to fill in grid with densities
+    for j in range(0, n):
+        for i in range(0, n):
+            dens[j, i] = gsw.rho(si[i], ti[j], 0) - 1000
+
+    contours = ax.contour(si, ti, dens, linestyles="dashed", colors="k", zorder=0)
+    ax.clabel(
+        contours,
+        levels=contours.levels[::2],
+        fontsize=12,
+        inline=1,
+        fmt="%.2f",
+        zorder=50,
+    )
+    ax.set_xlim([s0, s1])
+    ax.set_ylim([t0, t1])
 
     colors = [storm1color, epoch1color, epoch2color]
     cruise_periods = ["Filament (Epoch 1)", "Core (Epoch 1)", "Core (Epoch 2)"]
     handles = [Patch(color=colors[i], label=c) for i, c in enumerate(cruise_periods)]
-    ax.legend(handles=handles, loc="upper right")
+    ax.legend(handles=handles, loc="upper right").set_zorder(600)
     mark_text(ax, "b)", 0.05, 0.95)
     fig.tight_layout()
 
